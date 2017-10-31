@@ -4,8 +4,8 @@ import cors from 'cors'
 
 import monk from 'monk'
 
-const db = monk('localhost:27017/shopping-cart')
-const Product = db.get('products')
+const db = monk('localhost:27017/beerMe')
+const Beer = db.get('beers')
 
 const app = express()
 
@@ -13,14 +13,14 @@ app.use(cors())
 app.use(bodyParser.json())
 
 app.get('/products', (req, res) => {
-  Product.find({}).then((products) => {
-    res.json(products)
+  Beer.find({}).then((beers) => {
+    res.json(beers)
   })
 })
 
-app.post('/products', (req, res) => {
-  Product.insert(req.body).then((product) => {
-    res.json(product)
+app.post('/beers', (req, res) => {
+  Beer.insert(req.body).then((beer) => {
+    res.json(beer)
   })
 })
 
